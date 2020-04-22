@@ -8,6 +8,8 @@ import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.item_dog.view.*
 import page.shellcore.tech.android.dogs.R
 import page.shellcore.tech.android.dogs.model.DogBreed
+import page.shellcore.tech.android.dogs.util.getProgressDrawable
+import page.shellcore.tech.android.dogs.util.loadImage
 
 class DogsListAdapter : RecyclerView.Adapter<DogsListAdapter.ViewHolder>() {
 
@@ -40,7 +42,7 @@ class DogsListAdapter : RecyclerView.Adapter<DogsListAdapter.ViewHolder>() {
         fun bind(dog: DogBreed) {
             txtDogName.text = dog.dogBreed
             txtDogLifespan.text = dog.lifeSpan
-            imgItemDog.loadImage(dog.imageUrl)
+            imgItemDog.loadImage(dog.imageUrl, getProgressDrawable(imgItemDog.context))
 
             view.setOnClickListener {
                 val action = ListFragmentDirections.actionDetailFragment()
