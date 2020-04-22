@@ -14,6 +14,7 @@ class ListFragment : Fragment(R.layout.fragment_list) {
 
         btnDetails.setOnClickListener {
             val action = ListFragmentDirections.actionDetailFragment()
+            action.dogUuid = 5
             Navigation.findNavController(it)
                 .navigate(action)
         }

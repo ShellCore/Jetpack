@@ -9,8 +9,15 @@ import page.shellcore.tech.android.dogs.R
 
 class DetailFragment : Fragment(R.layout.fragment_detail) {
 
+    private var dogUuid = 0
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        arguments?.let {
+            dogUuid = DetailFragmentArgs.fromBundle(it).dogUuid
+            textView2.text = dogUuid.toString()
+        }
 
         btnList.setOnClickListener {
             val action = DetailFragmentDirections.actionListFragment()
