@@ -16,13 +16,6 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
 
         arguments?.let {
             dogUuid = DetailFragmentArgs.fromBundle(it).dogUuid
-            textView2.text = dogUuid.toString()
-        }
-
-        btnList.setOnClickListener {
-            val action = DetailFragmentDirections.actionListFragment()
-            Navigation.findNavController(it)
-                .navigate(action)
         }
     }
 }
