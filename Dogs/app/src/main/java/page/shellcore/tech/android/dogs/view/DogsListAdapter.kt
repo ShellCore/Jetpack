@@ -3,6 +3,7 @@ package page.shellcore.tech.android.dogs.view
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.item_dog.view.*
 import page.shellcore.tech.android.dogs.R
@@ -30,7 +31,7 @@ class DogsListAdapter : RecyclerView.Adapter<DogsListAdapter.ViewHolder>() {
 
     override fun getItemCount() = dogs.size
 
-    class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+    class ViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
 
         private val imgItemDog = view.imgItemDog
         private val txtDogName = view.txtItemName
@@ -39,7 +40,11 @@ class DogsListAdapter : RecyclerView.Adapter<DogsListAdapter.ViewHolder>() {
         fun bind(dog: DogBreed) {
             txtDogName.text = dog.dogBreed
             txtDogLifespan.text = dog.lifeSpan
-
+            view.setOnClickListener {
+                val action = ListFragmentDirections.actionDetailFragment()
+                Navigation.findNavController(it)
+                    .navigate(action)
+            }
         }
     }
 }
