@@ -2,25 +2,46 @@ package page.shellcore.tech.android.dogs.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.observers.DisposableSingleObserver
+import io.reactivex.schedulers.Schedulers
 import page.shellcore.tech.android.dogs.model.DogBreed
+import page.shellcore.tech.android.dogs.model.DosgApiService
 
 class ListViewModel: ViewModel() {
+
+    private val dogService = DosgApiService()
+    private val disposable = CompositeDisposable()
 
     val dogs = MutableLiveData<List<DogBreed>>()
     val dogsLoadError = MutableLiveData<Boolean>()
     val loading = MutableLiveData<Boolean>()
 
     fun refresh() {
-        val dog1 = DogBreed(breedId = "1", dogBreed = "Corgi", lifeSpan = "15 years", breedGroup = "breadGroup", bredFor = "bredFor", temperament = "temperament", imageUrl = "", countryCode = "", description = "", history = "", origin = "", height = null, weight = null)
-        val dog2 = DogBreed(breedId = "1", dogBreed = "Terrier", lifeSpan = "15 years", breedGroup = "breadGroup", bredFor = "bredFor", temperament = "temperament", imageUrl = "", countryCode = "", description = "", history = "", origin = "", height = null, weight = null)
-        val dog3 = DogBreed(breedId = "1", dogBreed = "Labrador", lifeSpan = "15 years", breedGroup = "breadGroup", bredFor = "bredFor", temperament = "temperament", imageUrl = "", countryCode = "", description = "", history = "", origin = "", height = null, weight = null)
-        val dog4 = DogBreed(breedId = "1", dogBreed = "Pomeranian", lifeSpan = "15 years", breedGroup = "breadGroup", bredFor = "bredFor", temperament = "temperament", imageUrl = "", countryCode = "", description = "", history = "", origin = "", height = null, weight = null)
-        val dog5 = DogBreed(breedId = "1", dogBreed = "Chihuahua", lifeSpan = "15 years", breedGroup = "breadGroup", bredFor = "bredFor", temperament = "temperament", imageUrl = "", countryCode = "", description = "", history = "", origin = "", height = null, weight = null)
+        fetchFromRemote()
+    }
 
-        val dogList = arrayListOf(dog1, dog2, dog3, dog4, dog5)
+    private fun fetchFromRemote() {
+        loading.value = true
+        disposable.add(
+            dogService.getDogs()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({dogList ->
+                    dogsLoadError.value = false
+                    loading.value = false
+                    dogs.value = dogList
+                }, {
+                    dogsLoadError.value = true
+                    loading.value = false
+                    it.printStackTrace()
+                })
+        )
+    }
 
-        dogs.value = dogList
-        dogsLoadError.value = false
-        loading.value = false
+    override fun onCleared() {
+        super.onCleared()
+        disposable.clear()
     }
 }

@@ -40,6 +40,8 @@ class DogsListAdapter : RecyclerView.Adapter<DogsListAdapter.ViewHolder>() {
         fun bind(dog: DogBreed) {
             txtDogName.text = dog.dogBreed
             txtDogLifespan.text = dog.lifeSpan
+            imgItemDog.loadImage(dog.imageUrl)
+
             view.setOnClickListener {
                 val action = ListFragmentDirections.actionDetailFragment()
                 Navigation.findNavController(it)

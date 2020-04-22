@@ -26,6 +26,14 @@ class ListFragment : Fragment(R.layout.fragment_list) {
             adapter = dogListAdapter
         }
 
+        refreshLayout.setOnRefreshListener {
+            recDogs.visibility = View.GONE
+            txtError.visibility = View.GONE
+            prgLoading.visibility = View.VISIBLE
+            viewModel.refresh()
+            refreshLayout.isRefreshing = false
+        }
+
         observeViewModel()
     }
 
