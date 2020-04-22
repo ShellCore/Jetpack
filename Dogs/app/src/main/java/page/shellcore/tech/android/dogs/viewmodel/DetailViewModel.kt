@@ -9,7 +9,7 @@ class DetailViewModel: ViewModel() {
     val dogLiveData = MutableLiveData<DogBreed>()
 
     fun fetch() {
-        val dog = DogBreed("1", "Corgi", "15 years", "breadGroup", "bredFor", "temperament", "")
+        val dog = DogBreed(breedId = "1", dogBreed = "Corgi", lifeSpan = "15 years", breedGroup = "breadGroup", bredFor = "bredFor", temperament = "temperament", imageUrl = "", countryCode = "", description = "", history = "", origin = "", height = null, weight = null)
         dogLiveData.value = dog
     }
 }

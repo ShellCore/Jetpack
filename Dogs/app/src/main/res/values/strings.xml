@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Dogs</string>
 
-    <string name="list_error_listError">An error occured while loading data.</string>
+    <string name="list_error_listError">An error occurred while loading data.</string>
     <string name="item_img_description">Dog image</string>
     <string name="detail_img_description">Dog image</string>
     <string name="detail_lbl_purpose">Purpose:</string>
