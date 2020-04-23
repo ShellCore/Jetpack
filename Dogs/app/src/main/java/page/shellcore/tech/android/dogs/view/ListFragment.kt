@@ -30,7 +30,7 @@ class ListFragment : Fragment(R.layout.fragment_list) {
             recDogs.visibility = View.GONE
             txtError.visibility = View.GONE
             prgLoading.visibility = View.VISIBLE
-            viewModel.refresh()
+            viewModel.refreshBypassCache()
             refreshLayout.isRefreshing = false
         }
 
