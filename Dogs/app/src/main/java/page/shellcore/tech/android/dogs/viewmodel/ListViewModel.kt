@@ -2,7 +2,6 @@ package page.shellcore.tech.android.dogs.viewmodel
 
 import android.app.Application
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.liveData
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
@@ -10,8 +9,11 @@ import kotlinx.coroutines.launch
 import page.shellcore.tech.android.dogs.model.DogBreed
 import page.shellcore.tech.android.dogs.model.DogDatabase
 import page.shellcore.tech.android.dogs.model.DosgApiService
+import page.shellcore.tech.android.dogs.util.SharedPreferencesHelper
 
 class ListViewModel(application: Application) : BaseViewModel(application) {
+
+    private val prefHelper = SharedPreferencesHelper(getApplication())
 
     private val dogService = DosgApiService()
     private val disposable = CompositeDisposable()
@@ -50,11 +52,12 @@ class ListViewModel(application: Application) : BaseViewModel(application) {
                 dogList[i].uuid = result[i].toInt()
                 ++i
             }
-            dogsRetreived(dogList)
+            dogsRetrieved(dogList)
         }
+        prefHelper.saveUpdateTime(System.nanoTime())
     }
 
-    private fun dogsRetreived(dogList: List<DogBreed>) {
+    private fun dogsRetrieved(dogList: List<DogBreed>) {
         dogsLoadError.value = false
         loading.value = false
         dogs.value = dogList
