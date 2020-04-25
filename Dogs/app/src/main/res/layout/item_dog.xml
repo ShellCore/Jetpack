@@ -1,54 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_margin="8dp"
-    app:cardCornerRadius="8dp"
-    app:cardElevation="4dp">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <data>
+
+        <variable
+            name="listener"
+            type="page.shellcore.tech.android.dogs.view.DogClickListener" />
+
+        <variable
+            name="dog"
+            type="page.shellcore.tech.android.dogs.model.DogBreed" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:onClick="@{listener.onDogClicked}"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="16dp">
+        android:layout_margin="8dp"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="4dp">
 
-        <ImageView
-            android:id="@+id/imgItemDog"
-            android:layout_width="@dimen/item_image_size"
-            android:layout_height="@dimen/item_image_size"
-            android:contentDescription="@string/item_img_description"
-            android:scaleType="centerCrop"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:srcCompat="@tools:sample/backgrounds/scenic" />
-
-        <LinearLayout
-            android:layout_width="0dp"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:orientation="vertical"
-            app:layout_constraintBottom_toBottomOf="@+id/imgItemDog"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/imgItemDog"
-            app:layout_constraintTop_toTopOf="@+id/imgItemDog">
+            android:padding="16dp">
 
             <TextView
-                android:id="@+id/txtItemName"
-                style="@style/itemTitle"
-                android:layout_width="match_parent"
+                android:id="@+id/txtDogId"
+                android:text="@{String.valueOf(dog.uuid)}"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                tools:text="Dog name" />
+                android:visibility="gone"
+                tools:ignore="MissingConstraints" />
+
+            <ImageView
+                android:id="@+id/imgItemDog"
+                android:layout_width="@dimen/item_image_size"
+                android:layout_height="@dimen/item_image_size"
+                android:contentDescription="@string/item_img_description"
+                android:imageUrl="@{dog.imageUrl}"
+                android:scaleType="centerCrop"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:srcCompat="@tools:sample/avatars" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toBottomOf="@+id/imgItemDog"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/imgItemDog"
+                app:layout_constraintTop_toTopOf="@+id/imgItemDog">
 
             <TextView
-                android:id="@+id/txtItemLifespan"
-                style="@style/itemContent"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                tools:text="Lifespan" />
-        </LinearLayout>
+                    android:id="@+id/txtItemName"
+                    style="@style/itemTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@{dog.dogBreed}"
+                    tools:text="Dog name" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</androidx.cardview.widget.CardView>
+                <TextView
+                    android:id="@+id/txtItemLifespan"
+                    style="@style/itemContent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="@{dog.lifeSpan}"
+                    tools:text="Lifespan" />
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+</layout>

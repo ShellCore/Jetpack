@@ -37,7 +37,7 @@
             android:id="@+id/textView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="16dp"
             android:layout_marginTop="40dp"
             android:text="@string/detail_lbl_purpose"
             android:textAllCaps="true"
@@ -69,27 +69,31 @@
 
         <TextView
             android:id="@+id/detailTxtPurpose"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/barrier2"
             app:layout_constraintTop_toTopOf="@+id/textView2"
             tools:text="Dog purpose" />
 
         <TextView
             android:id="@+id/detailTxtTemperament"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toEndOf="@+id/detailTxtPurpose"
             app:layout_constraintStart_toStartOf="@+id/detailTxtPurpose"
             app:layout_constraintTop_toBottomOf="@+id/detailTxtPurpose"
             tools:text="Dog temperament" />
 
         <TextView
             android:id="@+id/detailTxtLifespan"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toEndOf="@+id/detailTxtTemperament"
             app:layout_constraintStart_toStartOf="@+id/detailTxtTemperament"
             app:layout_constraintTop_toBottomOf="@+id/detailTxtTemperament"
             tools:text="Dog lifespan" />
