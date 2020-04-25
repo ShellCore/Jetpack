@@ -5,6 +5,9 @@
 
     <data>
 
+        <variable
+            name="dog"
+            type="page.shellcore.tech.android.dogs.model.DogBreed" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -16,6 +19,7 @@
             android:layout_width="0dp"
             android:layout_height="200dp"
             android:contentDescription="@string/detail_img_description"
+            android:imageUrl="@{dog.imageUrl}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -28,6 +32,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
             android:gravity="center"
+            android:text="@{dog.dogBreed}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/detailImgDog"
@@ -73,6 +78,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
+            android:text="@{dog.bredFor}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/barrier2"
             app:layout_constraintTop_toTopOf="@+id/textView2"
@@ -83,6 +89,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
+            android:text="@{dog.temperament}"
             app:layout_constraintEnd_toEndOf="@+id/detailTxtPurpose"
             app:layout_constraintStart_toStartOf="@+id/detailTxtPurpose"
             app:layout_constraintTop_toBottomOf="@+id/detailTxtPurpose"
@@ -93,6 +100,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
+            android:text="@{dog.lifeSpan}"
             app:layout_constraintEnd_toEndOf="@+id/detailTxtTemperament"
             app:layout_constraintStart_toStartOf="@+id/detailTxtTemperament"
             app:layout_constraintTop_toBottomOf="@+id/detailTxtTemperament"
