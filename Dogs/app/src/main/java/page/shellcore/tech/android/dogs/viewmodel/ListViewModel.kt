@@ -10,6 +10,7 @@ import kotlinx.coroutines.launch
 import page.shellcore.tech.android.dogs.model.DogBreed
 import page.shellcore.tech.android.dogs.model.DogDatabase
 import page.shellcore.tech.android.dogs.model.DosgApiService
+import page.shellcore.tech.android.dogs.util.NotificationsHelper
 import page.shellcore.tech.android.dogs.util.SharedPreferencesHelper
 import java.util.concurrent.TimeUnit
 
@@ -63,6 +64,7 @@ class ListViewModel(application: Application) : BaseViewModel(application) {
                     storeDogsLocally(dogList)
                     Toast.makeText(getApplication(), "Dogs retrieved from endpoint.", Toast.LENGTH_SHORT)
                         .show()
+                    NotificationsHelper(getApplication()).createNotification()
                 }, {
                     dogsLoadError.value = true
                     loading.value = false
