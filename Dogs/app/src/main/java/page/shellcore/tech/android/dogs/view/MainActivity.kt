@@ -62,9 +62,9 @@ class MainActivity : AppCompatActivity() {
                 AlertDialog.Builder(this)
                     .setTitle(getString(R.string.permission_sms_title))
                     .setMessage(getString(R.string.permission_sms_message))
-                    .setPositiveButton(getString(R.string.permission_sms_accept)) { _, _ ->
+                    .setPositiveButton(getString(R.string.permission_sms_btn_accept)) { _, _ ->
                         requestSmsPermission()
-                    }.setNegativeButton(getString(R.string.permission_sms_cancel)) { _, _ ->
+                    }.setNegativeButton(getString(R.string.permission_sms_btn_cancel)) { _, _ ->
                         notifyDetailFragment(false)
                     }.show()
             } else {
