@@ -8,4 +8,6 @@
     <string name="detail_lbl_temperament">Temperament:</string>
     <string name="detail_lbl_lifespan">Lifespan:</string>
     <string name="list_menu_settings">Settings</string>
+    <string name="detail_menu_sendSms">Send SMS</string>
+    <string name="detail_menu_share">Share</string>
 </resources>
