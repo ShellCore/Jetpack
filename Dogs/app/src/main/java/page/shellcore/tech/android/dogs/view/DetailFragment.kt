@@ -23,9 +23,9 @@ import page.shellcore.tech.android.dogs.viewmodel.DetailViewModel
 class DetailFragment : Fragment() {
 
     private lateinit var dataBinding: FragmentDetailBinding
-
     private lateinit var viewModel: DetailViewModel
     private var dogUuid = 0
+    private var sendSmsStarted = false
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -58,7 +58,8 @@ class DetailFragment : Fragment() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.actionSendSms -> {
-
+                sendSmsStarted = true
+                (activity as MainActivity).checkSmsPermission()
             }
             R.id.actionShare -> {
 
@@ -66,6 +67,10 @@ class DetailFragment : Fragment() {
         }
 
         return super.onOptionsItemSelected(item)
+    }
+
+    fun onPermissionResult(permissionGranted: Boolean) {
+
     }
 
     private fun observeViewModel() {
