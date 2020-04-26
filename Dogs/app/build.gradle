@@ -16,6 +16,9 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        // Configuración multidexing por si la aplicación sobrepasa las 65536 funciones que puede soportar el DexBuilder
+        multiDexEnabled true
     }
 
     buildTypes {
@@ -79,5 +82,8 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+
+    // Configuración multidexing por si la aplicación sobrepasa las 65536 funciones que puede soportar el DexBuilder
+    implementation 'com.android.support:multidex:1.0.3'
 
 }
