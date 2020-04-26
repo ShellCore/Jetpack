@@ -22,4 +22,7 @@
 
     <string name="dialog_send_sms_btn_accept">Send SMS</string>
     <string name="dialog_send_sms_btn_cancel">Cancel</string>
+
+    <string name="share_dog_subject">Check out this dog breed</string>
+    <string name="share_dog_title">Share with</string>
 </resources>

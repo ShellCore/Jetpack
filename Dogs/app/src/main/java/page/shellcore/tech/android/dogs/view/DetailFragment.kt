@@ -16,7 +16,6 @@ import androidx.palette.graphics.Palette
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.transition.Transition
-import kotlinx.android.synthetic.main.dialog_send_sms.*
 import page.shellcore.tech.android.dogs.R
 import page.shellcore.tech.android.dogs.databinding.DialogSendSmsBinding
 import page.shellcore.tech.android.dogs.databinding.FragmentDetailBinding
@@ -68,7 +67,12 @@ class DetailFragment : Fragment() {
                 (activity as MainActivity).checkSmsPermission()
             }
             R.id.actionShare -> {
-
+                val intent = Intent(Intent.ACTION_SEND)
+                intent.type = "text/plain"
+                intent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.share_dog_subject))
+                intent.putExtra(Intent.EXTRA_TEXT, "${currentDog?.dogBreed} bred for ${currentDog?.bredFor}")
+                intent.putExtra(Intent.EXTRA_STREAM, currentDog?.imageUrl)
+                startActivity(Intent.createChooser(intent, getString(R.string.share_dog_title)))
             }
         }
 
