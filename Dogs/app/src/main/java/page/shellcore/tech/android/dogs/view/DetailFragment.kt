@@ -1,8 +1,11 @@
 package page.shellcore.tech.android.dogs.view
 
+import android.app.PendingIntent
+import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.drawable.Drawable
 import android.os.Bundle
+import android.telephony.SmsManager
 import android.view.*
 import androidx.appcompat.app.AlertDialog
 import androidx.databinding.DataBindingUtil
@@ -92,7 +95,7 @@ class DetailFragment : Fragment() {
                     .setView(dialogBinding.root)
                     .setPositiveButton(getString(R.string.dialog_send_sms_btn_accept)) { _, _ ->
                         if (!dialogBinding.tilDestination.editText?.text.isNullOrEmpty()) {
-                            smsInfo.to = tilDestination.editText?.text.toString()
+                            smsInfo.to = dialogBinding.tilDestination.editText?.text.toString()
                             sendSms(smsInfo)
                         }
                     }.setNegativeButton(getString(R.string.dialog_send_sms_btn_cancel)) { _, _ -> }
@@ -104,7 +107,10 @@ class DetailFragment : Fragment() {
     }
 
     private fun sendSms(smsInfo: SmsInfo) {
-        TODO("Not yet implemented")
+        val intent = Intent(context, MainActivity::class.java)
+        val pendingIntent = PendingIntent.getActivity(context, 0, intent, 0)
+        val sms = SmsManager.getDefault()
+        sms.sendTextMessage(smsInfo.to, null, smsInfo.text, pendingIntent, null)
     }
 
     private fun observeViewModel() {
