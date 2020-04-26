@@ -7,4 +7,5 @@
     <string name="detail_lbl_purpose">Purpose:</string>
     <string name="detail_lbl_temperament">Temperament:</string>
     <string name="detail_lbl_lifespan">Lifespan:</string>
+    <string name="list_menu_settings">Settings</string>
 </resources>

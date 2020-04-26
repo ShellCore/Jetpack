@@ -12,6 +12,7 @@ import page.shellcore.tech.android.dogs.model.DogDatabase
 import page.shellcore.tech.android.dogs.model.DosgApiService
 import page.shellcore.tech.android.dogs.util.NotificationsHelper
 import page.shellcore.tech.android.dogs.util.SharedPreferencesHelper
+import java.lang.NumberFormatException
 import java.util.concurrent.TimeUnit
 
 class ListViewModel(application: Application) : BaseViewModel(application) {
@@ -28,6 +29,7 @@ class ListViewModel(application: Application) : BaseViewModel(application) {
     val loading = MutableLiveData<Boolean>()
 
     fun refresh() {
+        checkCacheDuration()
         val updateTime = prefHelper.getUpdateTime()
         if (updateTime != null
             && updateTime != 0L
@@ -36,6 +38,17 @@ class ListViewModel(application: Application) : BaseViewModel(application) {
             fetchFromDatabase()
         } else {
             fetchFromRemote()
+        }
+    }
+
+    private fun checkCacheDuration() {
+        val cachePreference = prefHelper.getCacheDuration()
+
+        try {
+            val cachePreferenceSecondsLong = cachePreference?.toLong() ?: TimeUnit.MINUTES.toSeconds(5)
+            refreshTime = TimeUnit.SECONDS.toNanos(cachePreferenceSecondsLong)
+        } catch (e: NumberFormatException) {
+            e.printStackTrace()
         }
     }
 
